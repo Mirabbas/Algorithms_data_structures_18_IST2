@@ -1,0 +1,148 @@
+using System;
+
+
+namespace Laba5tp
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+            int[] table1 = new int[10];                //Задаем целочисленную таблицу А[1:10], то есть массив размерностью 10
+            int[] table2 = new int[15];               //Задаем целочисленную таблицу B[1:10], то есть массив размерностью 15
+
+            Random rand = new Random();
+
+            for(int i=0; i<table1.Length; i++)       //Заполняем массив1 рандомными числами от 0 до 9
+            {
+                table1[i] = rand.Next(0,10);
+                Console.Write( table1[i] + " " );
+
+               
+            }
+
+            Console.WriteLine("\n");
+
+            for(int i = 0; i < table2.Length; i++)   //Заполняем массив2 рандомными числами от 0 до 9
+            {
+                table2[i] = rand.Next(0, 10);
+                Console.Write(table2[i] + " ");
+            }
+
+
+            Console.WriteLine("\n");
+
+            void Sort()
+            {
+                int sort1;
+                for(int i=0; i < table1.Length - 1; i++)          //Сортировка элементов массива1 по возрастанию (Сортировка выбором)
+                {
+                    for(int j = i + 1; j < table1.Length; j++)
+                    {
+                        if (table1[i] > table1[j])                     
+                        {
+                            sort1 = table1[i];
+                            table1[i] = table1[j];           
+                            table1[j] = sort1;
+                        }
+                    }
+                }
+
+                Console.Write( "\n"+"Вывод отсортированного массива 1" + "\n");
+                for (int i = 0; i < table1.Length; i++)
+                {
+                    Console.Write(table1[i] + " ");
+                }
+
+                int[] array1 = new int[10];
+                array1[0] = table1[0];
+
+
+                Console.Write( "\n"+"Вывод множества чисел массива 1");
+                Console.Write("\n"+array1[0]+" ");
+                int k = 1;
+                 for(int i=1; i < 10; i++)                   //Составляем множество чисел, встречающихся в отсортированном массиве 1
+                {
+                    if (table1[i] != table1[i - 1])         
+                    {
+                        array1[k] = table1[i];            
+                        Console.Write(array1[k] + " ");
+                        k++;
+                    }
+                }
+
+
+
+                Console.WriteLine("\n");
+
+
+                int sort2;
+                for (int i = 0; i < table2.Length - 1; i++)            //Сортировка элементов массива2 по возрастанию (Сортировка выбором)
+                {
+                    for (int j = i + 1; j < table2.Length; j++)
+                    {
+                        if (table2[i] > table2[j])                 
+                        {
+                            sort2 = table2[i];
+                            table2[i] = table2[j];                 
+                            table2[j] = sort2;
+                        }
+                    }
+                }
+
+                Console.WriteLine("\n"+"Вывод отсортированного массива 2");
+                for (int i = 0; i < table2.Length; i++)
+                {
+                    Console.Write(table2[i]+" ");
+                }
+
+
+                int[] array2 = new int[15];
+                array2[0] = table2[0];
+
+                Console.Write("\n" + "Вывод множества чисел массива 2");
+                Console.Write("\n" + array2[0] + " ");
+                int p = 1;
+                for (int i = 1; i < 15; i++)                  //Составляем множество чисел, встречающихся в отсортированном массиве 2
+                {
+                    if (table2[i] != table2[i - 1])             
+                    {
+                        array2[p] = table2[i];              
+                        Console.Write(array2[p] + " ");
+                        p++;
+                    }
+                }
+
+
+
+                Console.WriteLine("\n");
+
+                int count = 0;                           
+               for(int i = 0; i < 10; i++)               //Проверяем на сходство множеств
+                {
+                    if (array1[i] != array2[i])       
+                    {
+                        count++;                       
+
+                    }
+                }
+
+                if (count != 0)
+                {
+                    Console.Write("\n"+ "Непохожие");
+
+                }
+                else
+                {
+                    Console.Write("\n"+ "Похожие");
+                }
+
+            }
+
+
+            Sort();
+
+            Console.ReadKey();
+        }
+    }
+}
